@@ -1,0 +1,36 @@
+@import './tokens.css';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    background:
+            linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+            url("/images/background.jpeg") repeat center center fixed;
+    /*background: url("/images/background.jpeg") no-repeat center center fixed;*/
+    /*background-size: cover;*/
+    /*color: var(--color-text-primary);*/
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, .headline {
+    font-family: var(--font-headline);
+    font-weight: 900;
+    letter-spacing: 0.01em;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    /*padding: 0 var(--container-padding);*/
+}

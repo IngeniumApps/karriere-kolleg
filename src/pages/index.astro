@@ -1,16 +1,23 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import CollegeGrid from '../components/CollegeGrid.astro';
+import USPSection from '../components/USPSection.astro';
+import Footer from '../components/Footer.astro';
+import HomeSection from '../components/HomeSection.astro'
+import KollegsSection from '../components/KollegsSection.astro'
+import KontaktSection from '../components/KontaktSection.astro'
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<Header />
+	<main>
+		<HomeSection />
+		<KollegsSection />
+		<KontaktSection />
+		<Hero />
+		<CollegeGrid />
+		<USPSection />
+	</main>
+	<Footer />
+</Layout>

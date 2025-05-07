@@ -45,3 +45,16 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+# KarriereKolleg Landing Page
+
+Eine statische Landing-Page für KarriereKolleg, gebaut mit Astro.
+
+## Lokale Entwicklung
+
+1. Repository klonen
+```bash
+    git clone [repo-url]
+    cd karriere-kolleg
+```
+

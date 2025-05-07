@@ -1,0 +1,22 @@
+:root {
+    --color-primary: #3c8bc1;
+    --color-secondary: #1b4f8c;
+    --color-accent: #e67e22;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #1b4f8c;
+    --color-text-primary: #1b4f8c;
+    --color-text-secondary: #3c8bc1;
+
+    --font-headline: 'brandon-grotesque', 'Montserrat', Arial, sans-serif;
+    --font-body: 'Montserrat', Arial, sans-serif;
+
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+
+    --container-max-width: 1280px;
+    /*--container-padding: 1rem;*/
+}
