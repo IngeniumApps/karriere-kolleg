@@ -1,60 +1,109 @@
-# Astro Starter Kit: Minimal
 
-```sh
-npm create astro@latest -- --template minimal
+# Kolleg Project (Astro)
+
+A short guide for anyone who wants to clone, run and publish this Astro‑powered website.
+
+---
+
+## 1. What this repository contains
+
+```
+kolleg/
+├─ docs/            ← static files Astro builds (published by GitHub Pages)
+│  ├─ _astro/       ← optimised JS + CSS (file names are hashed)
+│  ├─ images/
+│  ├─ scripts/
+│  ├─ .nojekyll     ← **must be empty – disables Jekyll on GitHub Pages**
+│  └─ index.html
+├─ public/          ← assets that are copied 1‑to‑1 to `docs/`
+├─ src/             ← Astro pages, components & CSS
+└─ astro.config.mjs ← Astro configuration
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### Why the `.nojekyll` file?
+GitHub Pages normally runs the Jekyll static‑site generator.  
+Jekyll ignores any folder that starts with an underscore (for example `_astro/`).  
+Adding an **empty** file called `.nojekyll` in the root of the published folder tells GitHub Pages to skip Jekyll and publish every file.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 2. Quick start (local)
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-# KarriereKolleg Landing Page
-
-Eine statische Landing-Page für KarriereKolleg, gebaut mit Astro.
-
-## Lokale Entwicklung
-
-1. Repository klonen
 ```bash
-    git clone [repo-url]
-    cd karriere-kolleg
+# 1. install dependencies
+npm install
+
+# 2. start the dev server (hot reload)
+npm run dev
+
+# 3. build a production version
+npm run build
+
+# 4. preview the build
+npx astro preview --host   # usually http://localhost:4321/kolleg/
 ```
 
+---
+
+## 3. Astro configuration for GitHub Pages
+
+```ts
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  site: 'https://<user>.github.io/kolleg/', // full URL of the live site
+  base: '/kolleg/',                         // sub‑folder on GitHub Pages
+  outDir: 'docs',                           // build output folder
+});
+```
+`base` makes Astro prepend `/kolleg/` to every internal link and asset path.
+
+---
+
+## 4. Deploy to GitHub Pages (manual workflow)
+
+1. Build the site
+   ```bash
+   npm run build
+   ```
+2. Create the **`.nojekyll`** file (if it is missing)
+   ```bash
+   touch docs/.nojekyll
+   ```
+3. Commit and push the `docs/` folder to the default branch (for example `main`).
+4. In the repository settings enable GitHub Pages and select the **`/docs` folder** as source.
+5. Wait a few seconds and visit **https://<user>.github.io/kolleg/**.
+
+### Automatic `.nojekyll`
+Add it to the build script so it is recreated every time:
+```jsonc
+"scripts": {
+  "build": "astro build && touch docs/.nojekyll"
+}
+```
+
+---
+
+## 5. Common problems
+
+| Symptom                                                   | Cause                                                    | Fix                                   |
+|-----------------------------------------------------------|----------------------------------------------------------|---------------------------------------|
+| 404 on `/kolleg/_astro/*.css`                             | GitHub Pages deleted the `_astro` folder (Jekyll)        | Add empty `docs/.nojekyll`            |
+| Assets load locally but not on the live site              | Absolute paths starting with `/`                        | Use relative paths or `import.meta.env.BASE_URL` |
+
+---
+
+## 6. Extra commands
+
+```bash
+# Clean rebuild
+find docs -type f ! -name '.nojekyll' -delete && npm run build
+
+# Serve the built site on another port
+npx serve docs -l 5000
+```
+
+---
+
+*Last update: May 2025*
