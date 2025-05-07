@@ -41,6 +41,17 @@ import "../styles/header.css"
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
+            <!-- Drawer Content -->
+            <div class="drawer-content">
+                <button id="drawer-close" aria-label="Menü schließen">&times;</button>
+                <ul>
+                    <li><a href="#home">Startseite</a></li>
+                    <li><a href="#kollegs">Kollegs</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+            <!-- Overlay direkt im HTML -->
+            <div class="drawer-overlay"></div>
         </nav>
     </div>
     <script is:inline src="/scripts/header.js"></script>

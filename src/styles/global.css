@@ -10,6 +10,7 @@ html, body {
     /*background: url("/images/background.jpeg") no-repeat center center fixed;*/
     /*background-size: cover;*/
     /*color: var(--color-text-primary);*/
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 

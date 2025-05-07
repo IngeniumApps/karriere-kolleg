@@ -16,39 +16,38 @@ document.addEventListener('DOMContentLoaded', function () {
     updateHeaderOnScroll();
 
     // Drawer-Logik (Mobile Navigation)
+    // Drawer-Logik (Mobile Navigation)
     const drawerToggle = document.getElementById('drawer-toggle');
-    const drawer = document.getElementById('drawer');
+    const drawerContent = document.querySelector('.drawer-content');
     const drawerClose = document.getElementById('drawer-close');
+    const overlay = document.querySelector('.drawer-overlay');
+    const body = document.body;
 
-    if (drawerToggle && drawer && drawerClose) {
-        // Öffnen
-        drawerToggle.addEventListener('click', function () {
-            drawer.style.display = 'block';
-            drawer.focus();
+    function openDrawer() {
+        drawerContent.classList.add('active');
+        overlay.classList.add('active');
+        body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawerContent.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+    }
+
+    if (drawerToggle && drawerContent && drawerClose && overlay) {
+        drawerToggle.addEventListener('click', openDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        overlay.addEventListener('click', closeDrawer);
+
+        // Links im Drawer
+        drawerContent.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeDrawer);
         });
-        // Schließen
-        drawerClose.addEventListener('click', function () {
-            drawer.style.display = 'none';
-        });
+
         // ESC schließt Drawer
-        drawer.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') drawer.style.display = 'none';
-        });
-        // Klick auf Link schließt Drawer
-        drawer.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                drawer.style.display = 'none';
-            });
-        });
-        // Klick außerhalb schließt Drawer
-        document.addEventListener('click', function (e) {
-            if (
-                drawer.style.display === 'block' &&
-                !drawer.contains(e.target) &&
-                e.target !== drawerToggle
-            ) {
-                drawer.style.display = 'none';
-            }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeDrawer();
         });
     }
 
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         homeLinkDesktop.addEventListener('click', handleHomeLinkClick);
     }
     // Mobile
-    const homeLinkMobile = document.querySelector('.nav-mobile a[href="#home"]');
+    const homeLinkMobile = document.querySelector('.drawer-content a[href="#home"]');
     if (homeLinkMobile) {
         homeLinkMobile.addEventListener('click', handleHomeLinkClick);
     }
