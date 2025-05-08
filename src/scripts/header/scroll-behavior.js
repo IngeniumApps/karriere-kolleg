@@ -14,12 +14,10 @@ export const initScrollBehavior = () => {
      */
     function updateHeaderOnScroll() {
         if (window.scrollY > 50) {
-            // If a user scrolled down more than 50 px, change the header style from transparent to scrolled
-            header.classList.remove('header--transparent');
+            // If a user scrolled down more than 50 px, change the header style to scrolled
             header.classList.add('header--scrolled');
         } else {
-            // If the user scrolled back to the top, change the header style back to transparent
-            header.classList.add('header--transparent');
+            // If the user scrolled back to the top, change the header style back to default
             header.classList.remove('header--scrolled');
         }
     }

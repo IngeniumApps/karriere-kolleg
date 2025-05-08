@@ -5,24 +5,19 @@
     position: fixed;
     top: 0;
     left: 0;
+    /* width 100% dann passt auch der drawer button */
     width: 100%;
-    z-index: 50;
+    z-index: 1;
     height: 140px;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(1px);
     transition:
-            background 0.6s,
-            box-shadow 0.6s,
             height 0.4s cubic-bezier(0.4,0,0.2,1);
-    display: flex;
     align-items: center;
-    overflow: visible;
+    /*overflow: visible; nur wenn Elemente über die höhe vom Header hinausragen*/
 }
 
 .header--scrolled {
-    background: var(--color-primary, #1b4f8c);
+    background: var(--color-primary, #3c8bc1ff);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    backdrop-filter: none;
     height: 80px;
 }
 
@@ -30,10 +25,6 @@
    HEADER INHALT
    ========================= */
 .header__content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -47,8 +38,12 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.5rem;
     height: 100%;
+    transition: gap 0.4s;
+}
+.header--scrolled .header__logo {
+    gap: 0.7rem;
 }
 
 .logo-blob {
@@ -56,12 +51,11 @@
     left: -120px;
     top: 150px;
     transform: translateY(-50%);
-    z-index: 0;
+    z-index: 2;
     width: 600px;
-    height: 600px;
+    height: auto;
     transition: opacity 0.4s;
     opacity: 1;
-    pointer-events: none;
 }
 
 .header--scrolled .logo-blob {
@@ -71,29 +65,29 @@
 .logo-icon {
     height: 50px;
     width: auto;
-    display: block;
     fill: currentColor;
-    color: var(--color-white, #222);
-    transition: color 0.4s, height 0.4s;
-    z-index: 1;
+    color: var(--color-white, #fff);
+    transition: height 0.4s;
+    z-index: 3;
+    padding-left: 0.5rem; /* add border from active links */
 }
 
 .header--scrolled .logo-icon {
-    height: 48px;
-    color: var(--color-white, #fff);
+    height: 40px;
 }
 
 .header__title {
     font-size: 2.4rem;
-    font-family: var(--font-headline, 'Montserrat', Arial, sans-serif);
-    font-weight: 500;
-    color: var(--color-white, #fff); /* Hier war der Fehler */
-    z-index: 1;
+    font-family: var(--font-headline, 'Montserrat', Arial), sans-serif;
+    font-weight: 600;
+    color: var(--color-white, #fff);
+    z-index: 3;
     transition: font-size 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 .header--scrolled .header__title {
     font-size: 1.8rem;
+    font-weight: 500;
     color: var(--color-white, #fff);
 }
 
@@ -104,6 +98,7 @@
     display: none;
 }
 
+/* Min-Width for Tablets */
 @media (min-width: 768px) {
     .nav-desktop {
         display: flex;
@@ -116,18 +111,9 @@
         flex-direction: row;
         gap: 2.5rem;
         font-weight: 400;
-        list-style: none;
-        padding: 0 1rem;
-        margin: 0;
     }
 
     .nav-desktop a {
-        display: flex;
-        align-items: center;
-        background: transparent;
-        color: var(--color-black, #222);
-        border-bottom: 2px solid transparent;
-        text-decoration: none;
         padding: 0.25rem 0.5rem;
         transition: color 0.4s, border-color 0.4s;
     }
@@ -155,11 +141,9 @@
    MOBILE NAVIGATION
    ========================= */
 .nav-mobile {
-    position: relative;
     display: flex;
     align-items: center;
     height: 100%;
-    margin-right: -1rem;
 }
 
 @media (min-width: 768px) {
@@ -168,16 +152,18 @@
     }
 }
 
+.icon-hamburger {
+    width: 44px;
+    height: 44px;
+}
+
 #drawer-toggle {
-    position: relative;
-    z-index: 200;
+    z-index: 3;
     background: none;
     border: none;
     color: var(--color-black, #222);
     cursor: pointer;
     padding: 0;
-    height: 72px;
-    width: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -185,7 +171,6 @@
 }
 
 .header--scrolled #drawer-toggle {
-    height: 48px;
     color: var(--color-white, #fff);
 }
 
@@ -195,103 +180,108 @@
     outline: none;
 }
 
-.icon-hamburger {
-    width: 32px;
-    height: 32px;
-    display: block;
-}
-
-/* Drawer Content */
-.drawer-content {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 60%;
-    height: 100vh;
-    background: var(--color-primary);
-    padding: 2rem;
-    z-index: 200;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
-}
-
-.drawer-content.active {
-    display: block;
-    transform: translateX(0);
-}
-
-.drawer-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0;
-}
-
-.drawer-content li {
-    margin: 1rem 0;
-}
-
-.drawer-content a {
+.header--scrolled #drawer-toggle:hover,
+.header--scrolled #drawer-toggle:focus {
     color: var(--color-white, #fff);
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: block;
-    padding: 0.5rem 0;
+    outline: none;
 }
 
-#drawer-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    color: var(--color-white, #fff);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
+/* =========================
+   DRAWER
+   ========================= */
 
-/* Overlay */
-.drawer-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: 150;
-    touch-action: none; /* Prevents scrolling on touch devices */
-}
+/*.icon-close {*/
+/*    width: 32px;*/
+/*    height: 32px;*/
+/*    fill: currentColor;*/
+/*    color: var(--color-white, #fff);*/
+/*    display: block;*/
+/*    z-index: 2;*/
+/*    !*padding-right: 0.5rem; !* Add extra padding to match the space taken by the border on active links, so the padding matches the drawer icon *!*!*/
+/*}*/
 
-.drawer-overlay.active {
-    display: block;
-}
 
-.drawer-content {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80vw; /*!* oder z.B. max-width: 400px; *!*/
-    max-width: 400px;
-    height: 100vh;
-    background: var(--color-primary, #1b4f8c);
-    padding: 2rem 1.5rem;
-    z-index: 200;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
-    display: none;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Wichtig für sanftes Scrollen auf iOS - Nur auf scrollbaren Containern wie .drawer-content verwenden, nicht auf html, body. */
-    box-sizing: border-box;
-}
+/*.drawer-wave-bg {*/
+/*    width: 100%;*/
+/*    !*height: 133px; !* Höhe deiner SVG *!*!*/
+/*    overflow: hidden;*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    z-index: 1;*/
+/*}*/
+/*.drawer-wave-bg-icon {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*}*/
 
-.drawer-content.active {
-    display: block;
-    transform: translateX(0);
-}
-/* Prevent scroll when drawer is open */
-body.drawer-open {
-    width: 100vw;
-    height: 100%;
-}
+/*#drawer-close {*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    !*height: 140px; not used because we use a dynamic header in drawer.js   *!*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*!* Drawer Content *!*/
+/*.drawer-content {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    width: 75%;*/
+/*    height: 100dvh;*/
+/*    background: var(--color-primary);*/
+/*    z-index: 5;*/
+/*    transform: translateX(100%);*/
+/*    transition: transform 0.3s ease-out;*/
+/*}*/
+
+/*.drawer-content.active {*/
+/*    !*display: block;*!*/
+/*    transform: translateX(0);*/
+/*}*/
+
+/*.drawer-content ul {*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*    !*margin: 2rem 0;*!*/
+/*}*/
+
+/*.drawer-content li {*/
+/*    !*margin: 1rem 0;*!*/
+/*    background-color: var(--color-white, #fff);*/
+/*    border-radius: 0.5rem;*/
+/*    padding: 0.5rem 1rem;*/
+/*    margin: 0.5rem 1rem;*/
+/*}*/
+
+/*.drawer-content a {*/
+/*    color: var(--color-black, #000);*/
+/*    font-size: 1.2rem;*/
+/*    display: block;*/
+/*    padding: 0.5rem 0;*/
+/*}*/
+
+/*!* Overlay *!*/
+/*.drawer-overlay {*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100vw;*/
+/*    height: 100dvh;*/
+/*    background: rgba(0,0,0,0.5);*/
+/*    z-index: 4;*/
+/*    touch-action: none; !* Prevents scrolling on touch devices *!*/
+/*}*/
+
+/*.drawer-overlay.active {*/
+/*    display: block;*/
+/*}*/
+
+/*body.drawer-open {*/
+/*    width: 100vw;*/
+/*    height: 100%;*/
+/*}*/

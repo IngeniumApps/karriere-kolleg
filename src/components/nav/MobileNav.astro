@@ -1,11 +1,7 @@
 ---
 import HamburgerIcon from "../icons/HamburgerIcon.astro";
-import CloseIcon from "../icons/CloseIcon.astro";
-const navItems = [
-    { href: '#home', text: 'Startseite', current: true },
-    { href: '#kollegs', text: 'Kollegs' },
-    { href: '#kontakt', text: 'Kontakt' }
-];
+import DrawerContent from "./DrawerContent.astro";
+
 ---
 <!-- Mobile Navigation -->
 <nav id="drawer" class="nav-mobile">
@@ -13,23 +9,7 @@ const navItems = [
         <HamburgerIcon/>
     </button>
     <!-- Drawer Content -->
-    <div class="drawer-content">
-        <button id="drawer-close" aria-label="Menü schließen">
-            <CloseIcon/>
-        </button>
-        <ul>
-            {navItems.map(item => (
-                    <li>
-                        <a
-                                href={item.href}
-                                {...(item.current ? { 'aria-current': 'page' } : {})}
-                        >
-                            {item.text}
-                        </a>
-                    </li>
-            ))}
-        </ul>
-    </div>
+    <DrawerContent/>
     <!-- Overlay direkt im HTML -->
     <div class="drawer-overlay"></div>
 </nav>

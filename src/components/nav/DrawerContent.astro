@@ -1,0 +1,32 @@
+---
+import CloseIcon from "../icons/CloseIcon.astro";
+import DrawerWave from "./DrawerWave.astro";
+const navItems = [
+    { href: '#home', text: 'Startseite', current: true },
+    { href: '#kollegs', text: 'Kollegs' },
+    { href: '#kontakt', text: 'Kontakt' }
+];
+---
+<div class="drawer-content">
+    <!--<div class="drawer-header-bg"></div>-->
+    <ul>
+        {navItems.map(item => (
+                <li>
+                    <a
+                            href={item.href}
+                            {...(item.current ? { 'aria-current': 'page' } : {})}
+                    >
+                        {item.text}
+                    </a>
+                </li>
+        ))}
+    </ul>
+    <div class="drawer-footer">
+        <button id="drawer-close" aria-label="Menü schließen">
+            <CloseIcon/>
+        </button>
+        <div class="drawer-wave-bg">
+            <DrawerWave/>
+        </div>
+    </div>
+</div>
