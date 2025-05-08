@@ -261,6 +261,7 @@
     height: 100vh;
     background: rgba(0,0,0,0.5);
     z-index: 150;
+    touch-action: none; /* Prevents scrolling on touch devices */
 }
 
 .drawer-overlay.active {
@@ -271,7 +272,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 80vw;         /* oder z.B. max-width: 400px; */
+    width: 80vw; /*!* oder z.B. max-width: 400px; *!*/
     max-width: 400px;
     height: 100vh;
     background: var(--color-primary, #1b4f8c);
@@ -281,6 +282,7 @@
     transition: transform 0.3s ease-out;
     display: none;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Wichtig für sanftes Scrollen auf iOS - Nur auf scrollbaren Containern wie .drawer-content verwenden, nicht auf html, body. */
     box-sizing: border-box;
 }
 
@@ -290,7 +292,6 @@
 }
 /* Prevent scroll when drawer is open */
 body.drawer-open {
-    overflow: hidden;
-    position: relative;
     width: 100vw;
+    height: 100%;
 }

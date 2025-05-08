@@ -1,0 +1,23 @@
+---
+const navItems = [
+    { href: '#home', text: 'Startseite', current: true },
+    { href: '#kollegs', text: 'Kollegs' },
+    { href: '#kontakt', text: 'Kontakt' }
+];
+---
+
+<!-- Desktop Navigation -->
+<nav class="nav-desktop">
+    <ul>
+        {navItems.map(item => (
+                <li>
+                    <a
+                            href={item.href}
+                            {...(item.current ? { 'aria-current': 'page' } : {})}
+                    >
+                        {item.text}
+                    </a>
+                </li>
+        ))}
+    </ul>
+</nav>

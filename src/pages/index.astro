@@ -1,13 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import CollegeGrid from '../components/CollegeGrid.astro';
-import USPSection from '../components/USPSection.astro';
-import Footer from '../components/Footer.astro';
-import HomeSection from '../components/HomeSection.astro';
-import KollegsSection from '../components/KollegsSection.astro';
-import KontaktSection from '../components/KontaktSection.astro';
+import Header from '../components/header/Header.astro';
+import Footer from '../components/footer/Footer.astro';
+import HomeSection from '../components/sections/HomeSection.astro';
+import KollegsSection from '../components/sections/KollegsSection.astro';
+import KontaktSection from '../components/sections/KontaktSection.astro';
 ---
 <Layout>
 	<Header />
@@ -15,9 +12,6 @@ import KontaktSection from '../components/KontaktSection.astro';
 		<HomeSection />
 		<KollegsSection />
 		<KontaktSection />
-		<Hero />
-		<CollegeGrid />
-		<USPSection />
 	</main>
 	<Footer />
 </Layout>

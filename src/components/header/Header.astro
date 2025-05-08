@@ -1,0 +1,22 @@
+---
+// TODO: Change the path to the script in the header.txt file
+import DesktopNav from "../nav/DesktopNav.astro";
+import Logo from "./Logo.astro";
+import MobileNav from "../nav/MobileNav.astro";
+---
+<header id="main-header" class="header header--transparent">
+    <div class="container header__content">
+        <Logo/>
+        <!-- Desktop Navigation -->
+        <DesktopNav/>
+        <!-- Mobile Navigation -->
+        <MobileNav/>
+    </div>
+    <!--<script is:inline src="/karriere-kolleg/scripts/header.txt"></script>-->
+    <script>
+        import { initHeader } from "../../scripts/header/index.js";
+
+        // Initialisiere den Header, wenn das DOM geladen ist
+        document.addEventListener('DOMContentLoaded', initHeader);
+    </script>
+</header>

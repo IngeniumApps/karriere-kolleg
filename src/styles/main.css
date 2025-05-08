@@ -1,0 +1,4 @@
+@import "./base/global.css";
+@import "base/variables.css";
+@import "./components/header/header.css";
+@import "./components/sections/sections.css";
