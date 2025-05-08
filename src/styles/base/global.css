@@ -6,12 +6,44 @@ html, body {
     font-family: var(--font-body);
     background:
             linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.5)),
-            url("../images/background.jpeg") repeat center center fixed;
-    /*background: url("/images/background.jpeg") no-repeat center center fixed;*/
-    /*background-size: cover;*/
-    /*color: var(--color-text-primary);*/
+            url("/images/background.webp") repeat-y top center fixed;
+    background-size: 100% auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+@media (min-width: 1025px) and (min-resolution: 2dppx) {
+    html, body {
+        background:
+                linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.5)),
+                url("/images/background@2x.webp") repeat-y top center fixed; /* Änderung hier */
+        background-size: 100% auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    html, body {
+        background:
+                linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.5)),
+                url("/images/background-mobile.webp") repeat-y top center fixed; /* Änderung hier */
+        background-size: 100% auto;
+    }
+}
+/* Mobile Retina */
+@media (max-width: 600px) and (min-resolution: 2dppx) {
+    html, body {
+        background:
+                linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.5)),
+                url("/images/background-mobile@2x.webp") repeat-y top center fixed; /* Änderung hier */
+        background-size: 100% auto;
+    }
+}
+/* iOS Fix */
+@supports (-webkit-touch-callout: none) {
+    html, body {
+        background-attachment: scroll; /* Entfernt fixed für iOS */
+    }
 }
 
 h1, h2, h3, .headline {

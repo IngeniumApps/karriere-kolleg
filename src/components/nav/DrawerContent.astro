@@ -1,23 +1,19 @@
 ---
 import CloseIcon from "../icons/CloseIcon.astro";
 import DrawerWave from "./DrawerWave.astro";
+import Shape from "../Shape.astro";
 const navItems = [
-    { href: '#home', text: 'Startseite', current: true },
-    { href: '#kollegs', text: 'Kollegs' },
-    { href: '#kontakt', text: 'Kontakt' }
+    {href: '#home', text: 'Startseite', current: true, shape: 1, color: "#f39d40"},
+    {href: '#kollegs', text: 'Kollegs', shape: 2, color: "#e9669e"},
+    {href: '#kontakt', text: 'Kontakt', shape: 3, color: "#0d94cb"},
 ];
 ---
 <div class="drawer-content">
-    <!--<div class="drawer-header-bg"></div>-->
-    <ul>
+    <ul class="drawer-menu">
         {navItems.map(item => (
-                <li>
-                    <a
-                            href={item.href}
-                            {...(item.current ? { 'aria-current': 'page' } : {})}
-                    >
-                        {item.text}
-                    </a>
+                <li class="drawer-menu-item">
+                    <Shape shape={item.shape} color={item.color} />
+                    <a href={item.href}>{item.text}</a>
                 </li>
         ))}
     </ul>
