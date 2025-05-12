@@ -5,13 +5,18 @@
     width: 75%;
     max-width: 350px;
     height: 100dvh;
-    background:
-            linear-gradient(rgb(255, 255, 255,0.5), rgb(255, 255, 255,0.5)),
-            url("/images/background.webp") repeat-y top center fixed;
+    background-color: white; /* Solider weißer Hintergrund */
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            url("/images/background.svg");
     background-size: 150% auto;
     z-index: 5;
     transform: translateX(100%);
-    transition: transform 0.3s ease-out;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    touch-action: pan-y pinch-zoom;
+    will-change: transform;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,9 +24,6 @@
 /* Retina Desktop */
 @media (min-width: 1025px) and (min-resolution: 2dppx) {
     .drawer-content {
-        background:
-                linear-gradient(rgb(39, 193, 68), rgb(0, 175, 33)),
-                url("/images/background.webp") repeat-y top center fixed;
         background-size: 100% auto;
     }
 }
@@ -43,20 +45,23 @@
 /* Mobile */
 @media (max-width: 600px) {
     .drawer-content {
-        background-image: url("/images/background-mobile.webp");
     }
 }
 
 /* Mobile Retina */
 @media (max-width: 600px) and (min-resolution: 2dppx) {
     .drawer-content {
-        background-image: url("/images/background-mobile@2x.webp");
     }
 }
 
 .drawer-content.active {
     /*display: block;*/
     transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+.drawer-content.is-dragging {
+    transition: none; /* Keine Animation während des Ziehens */
 }
 .drawer-menu {
     list-style: none;
@@ -145,8 +150,17 @@
     background: rgba(0,0,0,0.5);
     z-index: 4;
     touch-action: none; /* Prevents scrolling on touch devices */
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
 }
 
 .drawer-overlay.active {
     display: block;
+
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-out;
 }
