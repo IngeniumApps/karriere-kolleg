@@ -7,7 +7,7 @@
     height: 100dvh;
     background:
             linear-gradient(rgb(255, 255, 255,0.5), rgb(255, 255, 255,0.5)),
-            url("/images/background.svg") repeat-y top center fixed;
+            url("/images/background.webp") repeat-y top center fixed;
     background-size: 150% auto;
     z-index: 5;
     transform: translateX(100%);
@@ -21,7 +21,7 @@
     .drawer-content {
         background:
                 linear-gradient(rgb(39, 193, 68), rgb(0, 175, 33)),
-                url("/images/background.svg") repeat-y top center fixed;
+                url("/images/background.webp") repeat-y top center fixed;
         background-size: 100% auto;
     }
 }
@@ -43,14 +43,14 @@
 /* Mobile */
 @media (max-width: 600px) {
     .drawer-content {
-        background-image: url("/images/background.svg");
+        background-image: url("/images/background-mobile.webp");
     }
 }
 
 /* Mobile Retina */
 @media (max-width: 600px) and (min-resolution: 2dppx) {
     .drawer-content {
-        background-image: url("/images/background.svg");
+        background-image: url("/images/background-mobile@2x.webp");
     }
 }
 
