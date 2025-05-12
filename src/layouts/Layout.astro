@@ -1,17 +1,43 @@
 ---
-import "../styles/main.css";
+import "../../public/styles/main.css"
+
+const pageTitle = "KarriereKolleg";
 ---
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>KarriereKolleg</title>
-        <!-- Brandon Grotesque von Typekit/Adobe Fonts -->
-        <link rel="stylesheet" href="https://use.typekit.net/ljc5jyx.css">
-        <!-- Montserrat als Fallback von Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap">
-    </head>
-    <body>
-        <slot />
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{pageTitle}</title>
+
+    <!-- 1. Kritische Styles -->
+    <style is:inline>
+        body {
+            visibility: hidden;
+            opacity: 0;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .header__title {
+            font-size: 2.4rem;
+            color: #fff;
+        }
+
+        .nav-desktop a {
+            color: #000;
+        }
+    </style>
+
+    <!-- 2. Fonts preloaden -->
+    <link rel="preload" href="/fonts/BrandonGrotesque-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/BrandonGrotesque-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!--&lt;!&ndash; 3. Haupt-CSS &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="/styles/main.css">-->
+</head>
+<body>
+<slot/>
+</body>
 </html>

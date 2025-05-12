@@ -1,0 +1,39 @@
+.main {
+    width: 100%;
+}
+
+/* Grundlayout für alle Sections */
+.section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Home Section (leer, kann später befüllt werden) */
+.section--home {
+    /*background: #fff; !* oder var(--color-bg-primary) *!*/
+}
+
+/* Kollegs Section */
+.section--kollegs {
+    /*background: #86efac; !* Beispiel-Grün, anpassbar *!*/
+    /*color: #1b4f8c;*/
+}
+
+/* Kontakt Section */
+.section--kontakt {
+    /*background: #fdba74; !* Beispiel-Orange, anpassbar *!*/
+    /*color: #1b4f8c;*/
+}
+
+/* Headline-Stil */
+.section__headline {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: inherit;
+    text-align: center;
+}
